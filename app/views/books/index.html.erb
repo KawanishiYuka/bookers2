@@ -20,3 +20,15 @@
   <%= f.text_area :body %>
   <%= f.submit 'Create Book' %>
 <% end %>
+
+<% @books.each do |book| %>
+<div>
+  <%= link_to user_path(@user) do %>
+  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <% end %>
+  
+  <p>Title：<%= link_to book.title, book_path(book.id)  %></p>
+  <p>Opinion：<%= book.body %></p>
+</div>
+
+<% end %>
