@@ -1,14 +1,16 @@
+<div>
+
 <h2>User info</h2>
-  <div>
-  <h3><%= @user.name %></h3>
-  <h3><%= @user.introduction %></h3>
-  
+  <p><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <h4>name <%= @user.name %></h4>
+  <h4>introduction <%= @user.introduction %></h4>
+
 </div>
 
   <li>
     <%= link_to 'My Page', edit_user_path(current_user.id) %>
   </li>
-  
+
 <h2>New book</h2>
 
 <%= form_with model: @book, local:true do |f| %>
