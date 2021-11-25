@@ -21,14 +21,14 @@
   <%= f.submit 'Create Book' %>
 <% end %>
 
-<h2>Book detail</h2>
+<h2>Users</h2>
 
+<% @users.each do |user| %>
 <div>
-  <%= link_to user_path(@user) do %>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <% end %>
-  
-  <p>Title：<%= link_to @book_detail.title, book_path(@book_detail)  %></p>
-  <p>Opinion：<%= @book_detail.body %></p>
+  <p>image:<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p>name：<%= user.name %></p>
+  <p><%= link_to 'show', user_path(user) %></p>
 </div>
 
+<% end %>
+<%= paginate @users %>
