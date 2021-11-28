@@ -1,23 +1,37 @@
-<h1>User info</h1>
-
-<% if @user.errors.any? %>
-    <%= pluralize(@user.errors.count, "error") %> prohibited this book from being saved:<br>
-    <% @user.errors.full_messages.each do |message| %>
-      <%= message %><br>
-    <% end %>
-<% end %>
-
-<%= form_with model:@user, local:true do |f| %>
-
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName" %>
-  
-  <label for="inputImage">Image</label>
-  <%= f.attachment_field :profile_image %>
-  
-  <label for="inputIntroduction">Introduction</label>
-  <%= f.text_area :introduction, autofocus: true %>
-  
-  <%= f.submit "Update User" %>
-  
-<% end %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 mx-auto">
+        <h1>User info</h1>
+        <% if @user.errors.any? %>
+          <%= pluralize(@user.errors.count, "error") %> prohibited this book from being saved:<br>
+          <% @user.errors.full_messages.each do |message| %>
+           <%= message %><br>
+          <% end %>
+        <% end %>
+        
+        <%= form_with model:@user, local:true do |f| %>
+          
+          <div class="form-group">
+           <label for="Name">Name</label>
+           <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          </div>
+          
+          <div class="form-group">
+           <label for="Image">Image</label>
+           <%= f.attachment_field :profile_image %>
+          </div>
+          
+          <div class="form-group">
+           <label for="Introduction">Introduction</label>
+           <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+          </div>
+          
+          <div class="form-group">
+           <%= f.submit 'Update User!', class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

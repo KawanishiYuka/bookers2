@@ -10,7 +10,7 @@ class BooksController < ApplicationController
      @user = current_user
      @books = Book.page(params[:page]).reverse_order
      render :index
-    end  
+    end
   end
 
   def index
@@ -24,16 +24,16 @@ class BooksController < ApplicationController
     @book_detail = Book.find(params[:id])
     @user = @book_detail.user
   end
-  
+
   def edit
     @book_detail = Book.find(params[:id])
-    if @book_detail == current_user
+    if @book_detail.user_id == current_user.id
       render :edit
     else
       redirect_to books_path
     end
   end
-  
+
   def update
     @book_detail = Book.find(params[:id])
     if @book_detail.update(book_params)
@@ -49,12 +49,12 @@ class BooksController < ApplicationController
     @book_detail.destroy
     redirect_to books_path
   end
-  
+
   private
 
   def book_params
     params.require(:book).permit(:title, :body)
   end
-  
-  
+
+
 end
